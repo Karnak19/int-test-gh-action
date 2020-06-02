@@ -1,4 +1,4 @@
-name: Integration tests Postgres
+name: Integration tests MySQL
 
 on:
   pull_request:
