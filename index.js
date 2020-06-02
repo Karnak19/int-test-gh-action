@@ -16,8 +16,8 @@ app.get("/", (req, res) => res.send("Hello world !"));
 app.use("/users", require("./routes/users.route.js"));
 
 async function main() {
-  await sequelize.sync();
   try {
+    await sequelize.sync();
     await sequelize.authenticate();
     console.log("Connection successful.");
     app.listen(PORT, (err) => {
