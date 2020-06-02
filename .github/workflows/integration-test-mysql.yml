@@ -30,7 +30,7 @@ jobs:
       - run: npm test
         env:
           CI: true
-          PORT: 6000
+          PORT: 6001
           DB_HOST: localhost
           DB_USER: developer
           DB_PW: test
