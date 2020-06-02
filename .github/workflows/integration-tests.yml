@@ -3,7 +3,7 @@ name: Test Workflow
 on:
   pull_request:
     branches: [master, dev]
-    
+
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -17,23 +17,24 @@ jobs:
     env:
       - POSTGRES_USER: postgres
       - POSTGRES_PASSWORD: postgres
-      ports:
-        - 5432:5432
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+      - POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
+    options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
   steps:
-  - uses: actions/checkout@v2
-  - name: Use Node.js ${{ matrix.node-version }}
-    uses: actions/setup-node@v1
-    with:
-      node-version: ${{ matrix.node-version }}
-  - run: npm install
-  - run: npm test
-    env:
-      CI: true
-      PORT: 6000
-      DB_HOST: localhost
-      DB_USER: postgres
-      DB_PW: postgres
-      DB_DIALECT: postgres
-      DB_DATABASE: postgres
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install
+    - run: npm test
+      env:
+        CI: true
+        PORT: 6000
+        DB_HOST: localhost
+        DB_USER: postgres
+        DB_PW: postgres
+        DB_DIALECT: postgres
+        DB_DATABASE: postgres
