@@ -19,7 +19,7 @@ async function main() {
   try {
     await sequelize.sync();
     await sequelize.authenticate();
-    console.log("Connection successful to database.");
+    console.log("Connection successful");
     app.listen(PORT, (err) => {
       if (err) {
         throw new Error("Something bad happened ...");
